@@ -3,3 +3,72 @@ Discrete Fourier Transform (DFT) merupakan metode yang digunakan untuk mengubah 
 Spektrogram merupakan representasi visual dari distribusi energi atau amplitudo sinyal terhadap waktu dan frekuensi, yang dihasilkan melalui proses Short-Time Fourier Transform (STFT). Dalam metode ini, sinyal dibagi menjadi beberapa segmen waktu pendek (windowing), kemudian masing-masing segmen dianalisis menggunakan Discrete Fourier Transform (DFT) untuk memperoleh informasi spektral pada interval waktu tertentu (Cohen, 1995). Hasil dari proses tersebut divisualisasikan dalam bentuk grafik dua dimensi, di mana sumbu horizontal menunjukkan waktu, sumbu vertikal menunjukkan frekuensi, dan intensitas warna menggambarkan amplitudo atau daya sinyal. Dengan demikian, spektrogram memungkinkan analisis sinyal non-stasioner, yaitu sinyal yang karakteristik frekuensinya berubah terhadap waktu, yang tidak dapat ditangkap secara optimal oleh transformasi Fourier biasa.
 
 Penerapan spektrogram meluas di berbagai bidang, terutama dalam analisis sinyal suara, musik, dan lingkungan akustik. Pada sinyal suara manusia, spektrogram digunakan untuk mengamati perubahan formant dan intonasi yang berkaitan dengan fonem atau emosi pembicara. Dalam musik, spektrogram membantu mengidentifikasi nada, ritme, serta struktur harmonik dari instrumen. Sedangkan dalam bioakustik atau pemantauan lingkungan, spektrogram berguna untuk mendeteksi pola suara hewan, kebisingan, dan fenomena alam lainnya (Towsey et al., 2014). Korelasi antara spektrogram dan DFT sangat erat, sebab DFT merupakan komponen utama dalam pembentukan spektrogram melalui proses STFT. Dengan kata lain, spektrogram memperluas fungsi DFT dengan menambahkan dimensi waktu, sehingga memungkinkan pengamatan dinamis terhadap evolusi spektrum frekuensi suatu sinyal secara lebih komprehensif.
+
+# 📡 Discrete Fourier Transform (DFT) & Spektrogram
+
+---
+
+## 1. Discrete Fourier Transform (DFT)
+
+DFT mengubah sinyal dari domain waktu ke domain frekuensi.
+
+### 🔹 Persamaan DFT
+
+![DFT](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}X[k]=\sum_{n=0}^{N-1}x[n]e^{-j2\pi%20kn/N})
+
+### 🔹 Bentuk Bilangan Kompleks
+
+![complex](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}X[k]=Re(X[k])+jIm(X[k]))
+
+### 🔹 Magnitudo dan Fase
+
+![magnitude](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}|X[k]|=\sqrt{Re(X[k])^2+Im(X[k])^2})
+
+![phase](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}\phi[k]=\tan^{-1}\left(\frac{Im(X[k])}{Re(X[k])}\right))
+
+### 🔹 Resolusi Frekuensi
+
+![res](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}\Delta f=\frac{f_s}{N})
+
+> Semakin besar N, resolusi frekuensi semakin baik.
+
+---
+
+## 2. Short Time Fourier Transform (STFT)
+
+DFT dilakukan per segmen menggunakan window untuk menangkap perubahan frekuensi terhadap waktu.
+
+### 🔹 Persamaan STFT
+
+![STFT](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}X(m,k)=\sum_{n=0}^{N-1}x[n]w[n-m]e^{-j2\pi%20kn/N})
+
+---
+
+## 3. Spektrogram
+
+Spektrogram merupakan visualisasi energi STFT:
+
+![spec](https://latex.codecogs.com/png.image?\dpi{120}\bg{white}Spectrogram(m,k)=|X(m,k)|^2)
+
+### Cara membaca:
+| Sumbu / Elemen | Arti |
+|---|---|
+| X | Waktu |
+| Y | Frekuensi |
+| Warna | Intensitas energi |
+
+---
+
+## 4. DFT vs Spektrogram
+
+| Fitur | DFT | Spektrogram |
+|---|---|---|
+| Informasi waktu | ❌ Tidak Ada | ✅ Ada |
+| Informasi frekuensi | ✅ Ada | ✅ Ada |
+| Output | 1D | 2D (t vs f) |
+
+---
+
+## 5. Kesimpulan
+
+DFT menunjukkan **frekuensi apa saja**, tetapi tidak **kapan munculnya**. STFT mengatasi hal ini dengan menganalisis sinyal per segmen, lalu divisualisasikan sebagai spektrogram untuk melihat **waktu vs frekuensi vs 
